@@ -7,6 +7,12 @@ import styles from "./MoviesGrid.module.css";
 export function MoviesGrid() {
   const [movies, setMovies] = useState([]);
 
+  useEffect(() => {
+    get("/discover/movie").then((data) => {
+       setMovies(data.results);
+    });
+  }, []);
+
   useEffect(
     () => [
       get("/discover/movie").then((data) => {
@@ -18,6 +24,12 @@ export function MoviesGrid() {
 
   // console.log(movies);
   return (
+    <ul className={styles.moviesGrid}>
+      {movies.map((movie) => (
+        <MovieCard key={movie.id} movie={movie} />
+      ))}
+    </ul>
+
     // OPTION 1
     // <ul>
     //   {movies.map(function(movie){
@@ -31,11 +43,5 @@ export function MoviesGrid() {
     //     <li key={movie.id}>{movie.title}</li>
     // ))}
     // </ul>
-
-    <ul className={styles.moviesGrid}>
-      {movies.map((movie) => (
-        <MovieCard key={movie.id} movie={movie} />
-      ))}
-    </ul>
   );
 }

@@ -14,7 +14,7 @@ export function MovieDetails() {
     get("/movie/" + movieId).then(data => {
         setMovie(data);
     })
-  }, [movieId])
+  }, [])
 
   const imageUrl = "https://image.tmdb.org/t/p/w300" + movie.poster_path;
 
