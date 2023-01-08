@@ -13,7 +13,7 @@ export function MoviesGrid() {
 
   const location = useLocation();
 
-  // console.log(location);
+  console.log(location);
   // console.log(location.search);
 
   const query = useQuery();
