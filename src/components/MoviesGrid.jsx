@@ -14,13 +14,13 @@ export function MoviesGrid() {
   }, []);
 
   useEffect(
-    () => [
+    () => {
       get("/discover/movie").then((data) => {
         setMovies(data.results);
-      }),
-    ],
-    []
-  );
+      });
+    }, []);
+
+
 
   // console.log(movies);
   return (

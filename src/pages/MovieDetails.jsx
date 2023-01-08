@@ -8,19 +8,26 @@ export function MovieDetails() {
   const { movieId } = useParams();
   //   console.log(movieId);
 
-  const [movie, setMovie] = useState([null]);
+  const [isLoading, setIsLoading] = useState(true);
+  const [movie, setMovie] = useState(null);
 
   useEffect(() => {
-    get("/movie/" + movieId).then(data => {
-        setMovie(data);
-    })
-  }, [])
+    setIsLoading(true);
+    get("/movie/" + movieId).then((data) => {
+      setIsLoading(false);
+      setMovie(data);
+    });
+  }, [movieId]);
 
-  const imageUrl = "https://image.tmdb.org/t/p/w300" + movie.poster_path;
+  if(isLoading){
+    return <div>Loading...</div>
+  }
 
-  if(!movie) {
+  if (!movie) {
     return null;
   }
+
+  const imageUrl = "https://image.tmdb.org/t/p/w300" + movie.poster_path;
 
   return (
     <div className={styles.detailsContainer}>
