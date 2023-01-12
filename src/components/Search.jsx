@@ -1,14 +1,13 @@
 import styles from "./Search.module.css";
 import { FaSearch } from "react-icons/fa";
 // import { useEffect, useState } from "react";
-import { useHistory } from "react-router-dom";
-import { useQuery } from "../hooks/useQuery";
+import { useNavigate, useSearchParams } from "react-router-dom";
 
 export function Search() {
-  const query = useQuery();
+  const [query, setQuery] = useSearchParams();
   const search = query.get("search");
 //   const [searchText, setSearchText] = useState("");
-  const history = useHistory();
+  const navigate = useNavigate();
 
 //   useEffect(() => {
 //     setSearchText(search || "");
@@ -32,7 +31,8 @@ export function Search() {
           onChange={(e) => {
             const value = e.target.value;
             // setSearchText(value);
-            history.push("/?search=" + value);
+            // navigate("/?search=" + value);
+            setQuery({search: value})
           }}
         />
           <FaSearch size={20} color="black" className={styles.searchButton}/>
