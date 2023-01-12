@@ -34,9 +34,7 @@ export function Search() {
             history.push("/?search=" + value);
           }}
         />
-        <button type="submit" className={styles.searchButton}>
-          <FaSearch size={20} />
-        </button>
+          <FaSearch size={20} color="black" className={styles.searchButton}/>
       </div>
     </form>
   );
