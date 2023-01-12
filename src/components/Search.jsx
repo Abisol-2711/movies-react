@@ -1,22 +1,22 @@
 import styles from "./Search.module.css";
 import { FaSearch } from "react-icons/fa";
-import { useEffect, useState } from "react";
+// import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useQuery } from "../hooks/useQuery";
 
 export function Search() {
-    const query = useQuery();
-    const search = query.get("search");
-  const [searchText, setSearchText] = useState("");
+  const query = useQuery();
+  const search = query.get("search");
+//   const [searchText, setSearchText] = useState("");
   const history = useHistory();
 
-  useEffect(() => {
-    setSearchText(search || "");
-  }, [search]);
+//   useEffect(() => {
+//     setSearchText(search || "");
+//   }, [search]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    history.push("/?search=" + searchText);
+    // history.push("/?search=" + searchText);
   };
 
   return (
@@ -26,8 +26,13 @@ export function Search() {
           type="text"
           placeholder="Batman"
           className={styles.searchInput}
-          value={searchText}
-          onChange={(e) => setSearchText(e.target.value)}
+        //   value={searchText}
+          value={search}
+          onChange={(e) => {
+            const value = e.target.value;
+            // setSearchText(value);
+            history.push("/?search=" + value);
+          }}
         />
         <button type="submit" className={styles.searchButton}>
           <FaSearch size={20} />
