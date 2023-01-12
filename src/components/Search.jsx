@@ -24,7 +24,8 @@ export function Search() {
       <div className={styles.searchBox}>
         <input
           type="text"
-          placeholder="Batman"
+          placeholder="Title"
+          aria-label="Search Movies"
           className={styles.searchInput}
         //   value={searchText}
           value={search}
