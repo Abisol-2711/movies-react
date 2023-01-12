@@ -1,12 +1,14 @@
 import { Link } from "react-router-dom";
 import styles from "./MovieCard.module.css";
-import img from "../img.png";
+// import img from "../img.png";
+import { getMovieImg } from "../utils/getMovieImg";
 
 export function MovieCard({ movie }) {
-  const imageUrl = movie.poster_path
-    ? "https://image.tmdb.org/t/p/w300" + movie.poster_path
-    : img;
-  console.log(imageUrl);
+  const imageUrl = getMovieImg(movie.poster_path, 300);
+  // const imageUrl = movie.poster_path
+  //   ? "https://image.tmdb.org/t/p/w300" + movie.poster_path
+  //   : img;
+  // console.log(imageUrl);
 
   return (
     <li className={styles.movieCard}>
